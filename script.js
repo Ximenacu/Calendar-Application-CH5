@@ -1,24 +1,29 @@
+// Displaying Current Day and Retrieving current time:
 var currentDay = dayjs().format('dddd, MMMM DD, YYYY.');
 $('#currentDay').text(currentDay);
-
-timeBlocks = $('#timeBlocks').children();
-console.log("timeBlocks: "+timeBlocks);
-console.log("timeBlocks 0: "+timeBlocks[0]);
-
 var time = dayjs().format('H');
 console.log("time : "+ time);
 
-
-$.each(timeBlocks, function () {
-  if (time>18){
-    timeBlocks.addClass('past');
-  } else if (time<9){
-    timeBlocks.addClass('future');
-  } 
-});
-
-
-
+// Getting the current time & adding "present" class
+var hour =[9,10,11,12,13,14,15,16,17];
+for (i=0; i<hour.length; i++){
+  console.log("i : "+ i);
+  var compare = time>hour[i];
+  if (compare === false){
+    break;
+  }
+}
+$('#timeBlocks').children().eq(i).addClass('present');
+// Adding "past" & "future" classes
+for (n=0;n<i;n++){
+  console.log("n : "+ n);
+  $('#timeBlocks').children().eq(n).addClass('past');
+}
+console.log("n out : "+ n);
+for (n++;n<hour.length;n++){
+  console.log("n future : "+ n);
+  $('#timeBlocks').children().eq(n).addClass('future');
+}
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
