@@ -25,6 +25,25 @@ for (n++;n<hour.length;n++){
   $('#timeBlocks').children().eq(n).addClass('future');
 }
 
+// saving the text in the timeblocks
+var text ={};
+var saveButton = $('.saveBtn');
+saveButton.on('click', function (event) {
+  var theId = this.id;
+  console.log("this: "+ this);
+  var pr ="h"+theId;
+  text.pr=theId;
+  var name = document.querySelector("#texta").value;
+  // var name = $("input:text").val();
+
+  
+  console.log("name: "+ name);
+  console.log("text in : "+text);
+});
+
+console.log("text: "+text);
+
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html. 
