@@ -4,9 +4,9 @@ Calendar application that allows a user to save events for each hour of the day.
 This app runs in the browser, and features dynamically updated HTML and CSS powered by JQuery.
 Uses the Day.js library to work with date and time
 
-## URL of deployed app:
+## URL of deployed app: https://ximenacu.github.io/Calendar-Application-CH5/
 
-## URL of Git Hub 
+## URL of Git Hub: https://github.com/Ximenacu/Calendar-Application-CH5
 
 
 ![image](SS_Deployed_App_Quiz.jpg)
