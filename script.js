@@ -1,5 +1,11 @@
+
+
+// localStorage.clear();
 // Retrieving stored names and scores:
+var text =[];
+var saveId=[];
 init()
+
 // Displaying Current Day and Retrieving current time:
 var currentDay = dayjs().format('dddd, MMMM DD, YYYY.');
 $('#currentDay').text(currentDay);
@@ -25,20 +31,23 @@ for (n++;n<hour.length;n++){
 }
 
 // saving the text in the timeblocks
-var text =[];
-var saveId=[];
+
 var saveButton = $('.btn');
 saveButton.on('click', function (event) {
+  console.log("text1: "+text);
+  console.log("saveId1: "+saveId);
   var theId = this.id;
   // var pr ="h"+theId;
-  var name = $(this).siblings('#texta').val();
+  var name = $(this).siblings('#texta').children().val();
   // text.pr=name;
   saveId.push(theId);
   text.push(name);
-  // console.log("name: "+ name);
-  // console.log("text: "+text);
+  console.log("text2: "+text);
+  console.log("saveId2: "+saveId);
   localStorage.setItem("Scheduler", JSON.stringify(text));
   localStorage.setItem("SchedulerId", JSON.stringify(saveId));
+  console.log("text3: "+text);
+  console.log("saveId3: "+saveId);
 });
 
 //Retrieving name and score from local storage:
@@ -47,7 +56,20 @@ function init(){
   var storedId = JSON.parse(localStorage.getItem("SchedulerId"));
   if (stored != null){
     text = stored;
+    saveId = storedId;
+    console.log("text0: "+text);
+    console.log("saveId0: "+ saveId);
+    
+
+    var fr =-1;
+    $('.time-block').each(function () { // .each() to iterate the blocks
+      fr ++;
+      var am = saveId[fr];
+      console.log("am: "+am);
+      $('#texta_'+am).text(text[fr]);
+    });
   }
+
 }
 
 
