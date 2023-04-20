@@ -1,6 +1,27 @@
+// --------------- Adding bootstrap classes and some elements.
+var eachhour = $('#timeBlocks').children()
+h=9;
+eachhour.each(function () { 
+    eachhour.addClass('row time-block');
+    var hourlabel = $('<div>');
+    hourlabel.addClass('col-2 col-md-1 hour text-center py-3');
+    
+    if(h<12){
+        hourlabel.text(h+'AM');
+    } else if (h==12){
+        hourlabel.text('12 PM');      
+    } else {
+        hourlabel.text((h-12)+' PM');
+    }
+    $('#hrs-'+h).prepend(hourlabel);
+    
+    $('#hrs-'+h).children().eq(1).addClass('col-8 col-md-10 description');
+    $('#hrs-'+h).children().eq(2).addClass('btn saveBtn col-2 col-md-1');
+    $('#hrs-'+h).children().eq(2).children().addClass('fas fa-save');
 
+    h++;
+  });
 
-// localStorage.clear();
 // Retrieving stored names and scores:
 var text =[];
 var saveId=[];
@@ -9,9 +30,8 @@ init()
 // Displaying Current Day and Retrieving current time:
 var currentDay = dayjs().format('dddd, MMMM DD, YYYY.');
 $('#currentDay').text(currentDay);
-// var time = dayjs().format('H');
-var time = 12;
-console.log("time : "+ time);
+var time = dayjs().format('H');
+// var time = 15;  //uncomment and choose a time to test. 
 
 // Getting the current time & adding "present" class
 var hour =[9,10,11,12,13,14,15,16,17];
@@ -31,23 +51,14 @@ for (n++;n<hour.length;n++){
 }
 
 // saving the text in the timeblocks
-
 var saveButton = $('.btn');
 saveButton.on('click', function (event) {
-  console.log("text1: "+text);
-  console.log("saveId1: "+saveId);
   var theId = this.id;
-  // var pr ="h"+theId;
   var name = $(this).siblings('#texta').children().val();
-  // text.pr=name;
   saveId.push(theId);
   text.push(name);
-  console.log("text2: "+text);
-  console.log("saveId2: "+saveId);
   localStorage.setItem("Scheduler", JSON.stringify(text));
   localStorage.setItem("SchedulerId", JSON.stringify(saveId));
-  console.log("text3: "+text);
-  console.log("saveId3: "+saveId);
 });
 
 //Retrieving name and score from local storage:
@@ -56,43 +67,25 @@ function init(){
   var storedId = JSON.parse(localStorage.getItem("SchedulerId"));
   if (stored != null){
     text = stored;
-    saveId = storedId;
-    console.log("text0: "+text);
-    console.log("saveId0: "+ saveId);
-    
+    saveId = storedId;    
 
     var fr =-1;
-    $('.time-block').each(function () { // .each() to iterate the blocks
+    $('.time-block').each(function () { // printing the saved data. 
       fr ++;
       var am = saveId[fr];
-      console.log("am: "+am);
       $('#texta_'+am).text(text[fr]);
     });
   }
 
 }
 
+// button to errase the data 
+var deletesched = $('.deletesched');
+deletesched.on('click', function (event) {
+  localStorage.clear();
 
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html. 
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  for (i=9;i<17;i++){
+    $('#texta_'+i).text("");
+  }
+  
 });
