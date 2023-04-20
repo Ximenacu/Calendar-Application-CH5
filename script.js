@@ -5,7 +5,7 @@ eachhour.each(function () {
     eachhour.addClass('row time-block');
     var hourlabel = $('<div>');
     hourlabel.addClass('col-2 col-md-1 hour text-center py-3');
-    
+
     if(h<12){
         hourlabel.text(h+'AM');
     } else if (h==12){

@@ -9,7 +9,7 @@ Uses the Day.js library to work with date and time
 ## URL of Git Hub: https://github.com/Ximenacu/Calendar-Application-CH5
 
 
-![image](SS_Deployed_App_Quiz.jpg)
+![image](Screenshot_DeployedApp_Ch5.jpg)
 
 ## Acceptance Ariteria: 
 GIVEN I am using a daily planner to create a schedule;
@@ -24,13 +24,13 @@ THEN I am presented with time blocks for standard business hours ✅
 THEN each time block is color-coded to indicate whether it is in the past, present, or future ✅
 
 * WHEN I click into a time block
-THEN I can enter an event
+THEN I can enter an event ✅
 
 * WHEN I click the save button for that time block
-THEN the text for that event is saved in local storage
+THEN the text for that event is saved in local storage ✅
 
 * WHEN I refresh the page
-THEN the saved events persist
+THEN the saved events persist ✅
 
 ### Additionally:
 * Uses the Day.js library to work with date and time.
